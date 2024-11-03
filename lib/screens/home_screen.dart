@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:weather_app/widgets/decorated_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,22 +19,69 @@ class HomeScreen extends StatelessWidget {
           statusBarBrightness: Brightness.dark,
         ),
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            Align(
-              alignment: const AlignmentDirectional(3, -0.3),
-              child: Container(
-                height: 100,
+      body: SafeArea(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              const DecoratedWidget(
+                x: -3,
+                y: -0.3,
+                color: Colors.deepPurple,
                 width: 300,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color:Colors.deepPurple,
+                height: 300,
+                shape: BoxShape.circle,
+              ),
+              const DecoratedWidget(
+                x: 3,
+                y: -0.3,
+                color: Colors.deepPurple,
+                width: 300,
+                height: 300,
+                shape: BoxShape.circle,
+              ),
+              const DecoratedWidget(
+                x: 0,
+                y: -1.2,
+                color: Colors.orangeAccent,
+                width: 600,
+                height: 300,
+                shape: BoxShape.rectangle,
+              ),
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Container(
+                  color: Colors.transparent,
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: const Column(
+                  children: [
+                    Text(
+                      'Moskow',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      'Good Morning',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
