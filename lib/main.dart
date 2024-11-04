@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return BlocProvider<WeatherBlockBloc>(
-              create: (context) => WeatherBlockBloc()..add(FetchWeather()),
+              create: (context) => WeatherBlockBloc()
+                ..add(FetchWeather(snapshot.data as Position)),
               child: const HomeScreen(),
             );
           } else {
